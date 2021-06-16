@@ -6,7 +6,7 @@ from functions import runModel
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/dashboard')
 def home():
     return render_template("index.html")
 
