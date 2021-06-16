@@ -1,7 +1,7 @@
-from flask import Flask, redirect, url_for, render_template, request
-import numpy as np
 import pandas as pd
-from functions import runModel, modelHealth
+from flask import Flask, render_template
+
+from functions import runModel
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ def alldata():
 def datahealth():
     accu = 74
     clr = pd.read_pickle("data/classification_report.pkl")
-    return render_template("datahealth.html", accu=accu, tables = [clr.to_html(classes='clr')],titles=clr.columns.values)
+    return render_template("datahealth.html", accu=accu, tables=[clr.to_html(classes='clr')], titles=clr.columns.values)
 
 
 @app.route('/dashboard')
@@ -34,8 +34,6 @@ def dashboard():
 def formSubmit():
     prob = runModel()
     return render_template("dashboard.html", strokeProb=prob)
-
-
 
 
 if __name__ == "__main__":

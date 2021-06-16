@@ -1,17 +1,14 @@
 # imports
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import classification_report
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.compose import ColumnTransformer
-import matplotlib.pyplot as plt
-from sklearn.model_selection import train_test_split
-import seaborn as sns
-import pickle
 import joblib
-from sklearn.model_selection import cross_val_score
-import numpy as np
+import matplotlib.pyplot as plt
 import pandas as pd
+import seaborn as sns
+from sklearn.compose import ColumnTransformer
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import OneHotEncoder
 
 # load large data set
 stroke_dataset = pd.read_csv('../../Desktop/WGU/strokeAI/data/stroke_data.csv').drop(columns=["work_type", "Residence_type", "id", "ever_married"])
