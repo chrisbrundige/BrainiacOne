@@ -36,19 +36,6 @@ def formSubmit():
     return render_template("dashboard.html", strokeProb=prob)
 
 
-@app.route("/login", methods=["POST", "GET"])
-def login():
-    if request.method == "POST":
-        user = request.form["un"]
-        return redirect(url_for("user", usr=user))
-
-    else:
-        return render_template("login.html")
-
-
-@app.route("/test")
-def test():
-    return render_template('test.html', )
 
 
 if __name__ == "__main__":
