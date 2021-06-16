@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/static/bse.css" />
+    <title>preCT | AI PREDICTION</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h3>BRAINIAC</h3>
+        <p>|</p>
+        <p>preCT stroke assessment tool</p>
+        <nav>
+          <a href="/all-data"><p>All Data</p></a>
+          <a href="/dashboard"><p>Dashboard</p></a>
+          <a href="/datahealth"><p>Data health</p></a>
+        </nav>
+      </header>
+
+      <div class="app">{% block appcontent %}{% endblock %}</div>
+
+      <footer>
+        <p>&copy; brundigital 2021</p>
+      </footer>
+
+     
+    </div>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block appcontent %}
+
+<p class ="txt-box">All patient Data in a pandas dataframe</p>
+<div class="stroke_data_wrapper" align="center">
+   {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+   {% endfor %}
+</div>
+
+{% endblock %}
+    
+    
+

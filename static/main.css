@@ -1,0 +1,155 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+
+p,
+h3,
+h5 {
+  font-family: Montserrat;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.form_wrap {
+  grid-column: 1/2;
+  grid-row: 2/4;
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255,255,255,0.4);
+  border: 0.1px solid whitesmoke;
+  height: 600px;
+  width: 400px;
+  padding: 10px;
+  font-family: Montserrat;
+ 
+}
+
+.grid_wrap {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 50px 1fr 1fr 25px;
+  grid-gap: 10px;
+}
+
+.visualizations {
+  display: grid;
+  grid-template-rows: 1fr 1fr ;
+  grid-column: 2/3;
+  grid-row: 2/4;
+  grid-gap: 5px;
+
+}
+
+.vis {
+  background-color: #ffffff;
+  border: 1px solid rgb(255, 255, 255);
+  padding: 5px;
+  box-shadow: 3px 1px 1px #FFFFFF
+}
+
+.vis:hover{
+  border: 1px solid rgb(15, 161, 219);
+
+}
+
+
+#follow-up{
+    display: flex;
+    flex-direction: column;
+    grid-column:3/4;
+    grid-row:2/4;
+    background-color: #ffffff;
+    border: 1px solid rgb(255, 255, 255);
+    padding: 5px;
+    box-shadow: 3px 1px 1px #FFFFFF;
+    background-color: rgba(255,255,255,0.4);
+
+}
+
+#cvatype {
+  height: 200px;
+  width: 200px;
+  grid-row: 1/2;
+}
+
+#dxprob {
+  height: 200px;
+  width: 200px;
+  grid-row: 2/3;
+}
+#dxprob:hover {
+  height: 200px;
+  width: 200px;
+  grid-row: 2/3;
+}
+
+#vessel {
+  height: 200px;
+  width: 200px;
+  grid-row: 1/2;
+}
+
+#strokeprob {
+  height: 200px;
+  width: 200px;
+  grid-row: 2/3;
+  align-content: center;
+}
+
+footer {
+  grid-row: 4/-1;
+  grid-column: 2/3;
+  align-content: center;
+}
+
+
+.wrapper{
+    background-image: url('/static/brainclip.png');
+    background-repeat: no-repeat;
+  }
+
+
+.button{
+   
+    height:25px;
+    width:100px;
+    background-color:rgb(0, 153, 255);
+    color: #ffffff;
+    border:.1px solid silver;
+    border-radius: 50px;
+    margin:10px;
+
+}
+
+.fu{
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+ 
+}
+
+nav{
+  display: flex;
+  flex-direction: row;
+  
+
+}
+
+
+a {
+  text-decoration: none;
+}
+
+#confusion-matrix-container{
+
+
+}
+
+.alpha {
+
+height:150px;
+
+
+}

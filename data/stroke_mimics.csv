@@ -1,0 +1,23 @@
+disease,Frequency ,N_patients
+Brain Tumors,10.5,31
+Hypoglycemia,9.2,27
+Toxic poisoning,8.5,25
+Hysterical attacks,8.1,24
+Seizure,7.8,23
+Sepsis,7.5,22
+Subdural hematoma,6.4,19
+Uremia,5.8,17
+Vestibulopathy,5.4,16
+Multiple sclerosis,4.4,13
+Brain Metastasis,4.1,12
+Encephalopathy,4,12
+Hyperglycemia,3.1,9
+Syncope,3.1,9
+Hyponatremia,2.7,8
+Hyperkalemia,2.4,7
+Spinal cord Lesions,1.7,5
+Hypothyroidism,1.7,5
+Encephalitis,1.4,4
+Brain dementia,1.4,4
+Migraine,1,3
+STROKE,85.1,1690

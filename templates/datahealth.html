@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block appcontent %}
+
+<p class ="txt-box">This dashboard provides metrics related to the overall health of the database and shows model accuracy over time</p>
+<div class="accu_wrapper">
+    <div class="accuracy">
+        <p> FIT Accuracy:{{ accu }}</p>
+    </div>
+    <div class="accuracy">
+        <p>Cross Validation Score</p>
+        {{ crossval }}
+    </div>
+    <div class="accuracy" id="confusion-matrix-container">
+        <img class = "alpha" src="/static/conf_mat.png"></img>
+    </div>
+    <div class="accuracy">D</div>
+</div>
+    <div class ='data-table'>
+        <p>Data Classification Report</p>
+
+
+        <div class="stroke_data_wrapper" align="center">
+            {% for table in tables %}
+            {{titles[loop.index]}}
+            {{ table|safe }}
+            {% endfor %}
+        </div>
+
+        <div>
+
+        </div>
+
+
+
+    </div>
+
+
+{% endblock %}
+
+
+

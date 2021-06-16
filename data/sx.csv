@@ -1,0 +1,6 @@
+Characteristic,Overall,Female,Male,P,White,Black,P,Ischemic,Hemmorrhagic,P,
+n,474,224,250,Nan,248,226,Nan,402,72,Nan,
+Headache,27.4,31.3,24.0,0.077,29.0,25.7,0.412,22.4,55.6,0.001,
+Vertigo ,2.1,1.8,2.4,0.642,3.2,0.9,0.077,2.5,0.0,0.176,
+Gait disturbance ,10.8,6.7,14.4,0.007,13.3,8.0,0.061,11.4,6.7,0.257,
+Convulsions ,4.4,4.5,4.4,0.973,4.0,4.9,0.659,3.2,11.1,0.003,
