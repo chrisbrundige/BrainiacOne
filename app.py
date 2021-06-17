@@ -5,6 +5,28 @@ from functions import runModel
 
 app = Flask(__name__)
 
+diseases = ['Brain Tumors',
+            'Hypoglycemia',
+            'Toxic poisoning',
+            'Hysterical attacks',
+            'Seizure',
+            'Sepsis',
+            'Subdural hematoma',
+            'Uremia',
+            'Vestibulopathy',
+            'Multiple sclerosis',
+            'Brain Metastasis',
+            'Encephalopathy',
+            'Hyperglycemia ',
+            'Syncope',
+            'Hyponatremia',
+            'Hyperkalemia',
+            'Spinal cord Lesions',
+            'Hypothyroidism',
+            'Encephalitis',
+            'Dementia',
+            'Migraine']
+
 
 # Route for handling the login page logic
 
@@ -18,9 +40,6 @@ def login():
         else:
             return redirect(url_for('dashboard'))
     return render_template('login.html', error=error)
-
-
-
 
 
 @app.route('/all-data')
@@ -39,7 +58,7 @@ def datahealth():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template("dashboard.html", strokeProb="P(CVA)")
+    return render_template("dashboard.html", len=len(diseases), diseases=diseases, strokeProb="P(CVA)")
 
 
 @app.route("/new_patient", methods=["POST", "GET"])

@@ -2,60 +2,78 @@
 
 {% block appcontent %}
 
-
-
 <div class="dash-wrap">
-  <div class="form_wrap">
-    <h3>Patient Data</h3>
-    <form action="/new_patient" method ="POST">
-      <input type="radio" id="male" name="gender" value="male" />
-      <label for="male">Male</label><br />
-      <input type="radio" id="female" name="gender" value="female" />
-      <label for="female">Female</label><br />
+    <div class="form_wrap">
+        <h3>Patient Data</h3>
+        <form action="/new_patient" method="POST">
+            <input type="radio" id="male" name="gender" value="male"/>
+            <label for="male">Male</label><br/>
+            <input type="radio" id="female" name="gender" value="female"/>
+            <label for="female">Female</label><br/>
 
-      <hr />
+            <hr/>
 
-      <label for="Age" >AGE</label>
-      <input type="number" name="age" id="age"  />
+            <label for="Age">AGE</label>
+            <input type="number" name="age" id="age"/>
 
-      <hr />
+            <hr/>
 
-      <p>Medical Hx</p>
+            <p>Medical Hx</p>
 
-      <input type="checkbox" name="Hypertension" id="Hypertension" />
-      <label for="HTN">Hypertension</label>
-      <input type="checkbox" name="Heart Disease" id="Heart Disease" />
-      <label for="cad">Heart disease</label>
+            <input type="checkbox" name="Hypertension" id="Hypertension"/>
+            <label for="HTN">Hypertension</label>
+            <input type="checkbox" name="Heart Disease" id="Heart Disease"/>
+            <label for="cad">Heart disease</label>
 
-      <hr />
+            <hr/>
 
-      <p>Social Hx</p>
+            <p>Social Hx</p>
 
-      <input type="checkbox" name="smokes" id="smoker" />
-      <label for="smoker">smoker</label>
-      <input type="checkbox" name="never smoked" id="never smoked" />
-      <label for="never_smoked">never smoked</label>
-      <input type="checkbox" name="formerly smoked" id="quit > 1 yr" />
-      <label for="quit">quit > 1 yr</label>
+            <input type="checkbox" name="smokes" id="smoker"/>
+            <label for="smoker">smoker</label>
+            <input type="checkbox" name="never smoked" id="never smoked"/>
+            <label for="never_smoked">never smoked</label>
+            <input type="checkbox" name="formerly smoked" id="quit > 1 yr"/>
+            <label for="quit">quit > 1 yr</label>
 
-      <hr />
+            <hr/>
 
-      <input type="bmi" name="bmi" placeholder="bmi" />
+            <input type="bmi" name="bmi" placeholder="bmi"/>
 
-      <input type="bgl" name ="bgl" placeholder="blood glucose" />
-       <button type="submit">ANALYZE</button>
-    </form>
+            <input type="bgl" name="bgl" placeholder="blood glucose"/>
+            <button type="submit">ANALYZE</button>
+        </form>
 
-  </div>
+    </div>
 
-  <div class="visualizations">
-    <div  id="strokeprob"><p>{{ strokeProb }}</p></div>
-    <div  id="cvatype"><p>Ischemic / Hemmorragic</p></div>
-    <div class="vis" id="vessel"><p>Vessel affected</p></div>
-    <div class="vis" id="dxprob"><p>Differentail probaility</p></div>
-  </div>
+    <div class="visualizations">
+        <div class="vis" id="strokeprob"><p>{{ strokeProb }}</p></div>
+        <div class="vis" id="cvatype"><p>Ischemic / Hemmorragic</p></div>
+        <div class="vis" id="vessel"><p>Vessel affected</p></div>
+        <div class="vis" id="dxprob"><p>Differentail probaility</p></div>
+    </div>
+
+    <div class="form_wrap_b">
+        <h3>Post CT DX</h3>
+        <form action="#" method="POST">
+            <label for="md"><p>provider</p></label>
+            <input type="text" id="doc" name="doc"><br><br>
+            <label for="actual-dx">Diagnosis post CT:</label>
+            <select name="dx" id="dx" form="actual-dx">
+                <option value="ischemic">Ischemic CVA</option>
+                <option value="hcva">Hemmorragic CVA</option>
+                {% for i in range (0, len) %}
+                <option value="disease"> {{ diseases[i] }}</option>
+                {% endfor %}
+
+            </select>
+
+            <button type="submit">ADD PATIENT DATA</button>
+        </form>
+
+    </div>
+
 </div>
-
 
 
 {% endblock %}
