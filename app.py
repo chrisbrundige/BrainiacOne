@@ -58,13 +58,13 @@ def datahealth():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template("dashboard.html", len=len(diseases), diseases=diseases, strokeProb="P(CVA)")
+    return render_template("dashboard.html", len=len(diseases), diseases=diseases, strokeProb="Enter Pt. Data to see P(CVA)")
 
 
 @app.route("/new_patient", methods=["POST", "GET"])
 def formSubmit():
     prob = runModel()
-    return render_template("dashboard.html", strokeProb=prob)
+    return render_template("dashboard.html", strokeProb=prob, len=len(diseases), diseases=diseases)
 
 
 if __name__ == "__main__":
