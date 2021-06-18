@@ -1,7 +1,7 @@
 import pandas as pd
 from flask import Flask, render_template, request, url_for, redirect
 
-from functions import runModel
+from functions import runModel, updateDB
 
 app = Flask(__name__)
 
@@ -26,6 +26,8 @@ diseases = ['Brain Tumors',
             'Encephalitis',
             'Dementia',
             'Migraine']
+sx = ['facial_deficit', 'ARM_DEFICIT', 'LEG_DEFICIT', 'DYSPHASIA', 'Visuospatial_disorder', 'Hemianopia',
+      'Brainstem_cerebellar_signs', 'Other_deficit']
 
 
 # Route for handling the login page logic
@@ -58,14 +60,21 @@ def datahealth():
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template("dashboard.html", len=len(diseases), diseases=diseases, strokeProb="Enter Pt. Data to see P(CVA)")
+    return render_template("dashboard.html", len=len(diseases),lensx=len(sx), diseases=diseases, sx=sx,strokeProb="Enter Pt. Data to see P(CVA)")
 
 
 @app.route("/new_patient", methods=["POST", "GET"])
 def formSubmit():
+
     prob = runModel()
-    return render_template("dashboard.html", strokeProb=prob, len=len(diseases), diseases=diseases)
+    return render_template("dashboard.html",lensx=len(sx), strokeProb=prob, len=len(diseases), diseases=diseases, sx=sx)
+
+
+@app.route("/confirm_dx", methods=["POST", "GET"])
+def confirmDX():
+    updateDB()
+    return render_template("dashboard.html", strokeProb=prob, len=len(diseases), diseases=diseases, lensx=len(sx), sx=sx)
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

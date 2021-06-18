@@ -3,6 +3,7 @@
 {% block appcontent %}
 
 <div class="dash-wrap">
+
     <div class="form_wrap">
         <h3>Patient Data</h3>
         <form action="/new_patient" method="POST">
@@ -10,37 +11,37 @@
             <label for="male">Male</label><br/>
             <input type="radio" id="female" name="gender" value="female"/>
             <label for="female">Female</label><br/>
-
-            <hr/>
-
             <label for="Age">AGE</label>
             <input type="number" name="age" id="age"/>
+            <hr>
 
-            <hr/>
+            <input type="radio" id="alert" name="ms" value="alert"/>
+            <label for="male">Alert</label><br/>
+
+            <input type="radio" id="altered" name="ms" value="altered"/>
+            <label for="female">Altered</label><br/>
+            <hr>
+
+            <input type="radio" id="wake_up_cva" name="wake_up_cva" value="wake_up_cva"/>
+            <label for="wake_up_cva">Sx present on waking</label><br/>
+            <hr>
 
             <p>Medical Hx</p>
 
-            <input type="checkbox" name="Hypertension" id="Hypertension"/>
-            <label for="HTN">Hypertension</label>
-            <input type="checkbox" name="Heart Disease" id="Heart Disease"/>
-            <label for="cad">Heart disease</label>
-
+            <input type="checkbox" name="afib" id="afib"/>
+            <label for="afib">ATRIAL FIB</label>
+            <hr>
+            <input type="bp" name="bp" placeholder="Systolic BP"/>
             <hr/>
 
-            <p>Social Hx</p>
+             <p>new symptoms</p>
 
-            <input type="checkbox" name="smokes" id="smoker"/>
-            <label for="smoker">smoker</label>
-            <input type="checkbox" name="never smoked" id="never smoked"/>
-            <label for="never_smoked">never smoked</label>
-            <input type="checkbox" name="formerly smoked" id="quit > 1 yr"/>
-            <label for="quit">quit > 1 yr</label>
 
-            <hr/>
+            {% for d in range (0, lensx) %}
+            <input type="checkbox" id= {{ sx[d] }} name= {{ sx[d] }} value={{ sx[d] }} />
+            <label for= {{ sx[d] }} > {{ sx[d] }}</label><br/>
+            {% endfor %}
 
-            <input type="bmi" name="bmi" placeholder="bmi"/>
-
-            <input type="bgl" name="bgl" placeholder="blood glucose"/>
             <button type="submit">ANALYZE</button>
         </form>
 
@@ -55,7 +56,7 @@
 
     <div class="form_wrap_b">
         <h3>Post CT DX</h3>
-        <form action="#" method="POST">
+        <form action="/confirm_dx" method="POST">
             <label for="md"><p>provider</p></label>
             <input type="text" id="doc" name="doc"><br><br>
             <label for="actual-dx">Diagnosis post CT:</label>
@@ -63,7 +64,7 @@
                 <option value="ischemic">Ischemic CVA</option>
                 <option value="hcva">Hemmorragic CVA</option>
                 {% for i in range (0, len) %}
-                <option value="disease"> {{ diseases[i] }}</option>
+                <option value="disease" name= {{ diseases[i] }} > {{ diseases[i] }}</option>
                 {% endfor %}
 
             </select>
