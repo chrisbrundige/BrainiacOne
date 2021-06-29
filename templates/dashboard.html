@@ -4,72 +4,88 @@
 
 <div class="dash-wrap">
 
-    <div class="form_wrap">
+    <div class="sx_form">
         <h3>Patient Data</h3>
         <form action="/new_patient" method="POST">
+            <p> Demographics </p>
             <input type="radio" id="male" name="gender" value="male"/>
-            <label for="male">Male</label><br/>
+            <label for="male">male</label><br/>
             <input type="radio" id="female" name="gender" value="female"/>
             <label for="female">Female</label><br/>
-            <label for="Age">AGE</label>
+            <label for="Age"><p>Age</p></label><br/>
             <input type="number" name="age" id="age"/>
-            <hr>
-
+            <p>Mental Status</p>
             <input type="radio" id="alert" name="ms" value="alert"/>
             <label for="male">Alert</label><br/>
-
             <input type="radio" id="altered" name="ms" value="altered"/>
             <label for="female">Altered</label><br/>
-            <hr>
-
+            <p>Last Known Well</p>
             <input type="radio" id="wake_up_cva" name="wake_up_cva" value="wake_up_cva"/>
             <label for="wake_up_cva">Sx present on waking</label><br/>
-            <hr>
-
             <p>Medical Hx</p>
-
             <input type="checkbox" name="afib" id="afib"/>
             <label for="afib">ATRIAL FIB</label>
-            <hr>
+            <p>Vital Signs</p>
             <input type="bp" name="bp" placeholder="Systolic BP"/>
-            <hr/>
 
-             <p>new symptoms</p>
+            <p>New Symptoms</p>
 
 
             {% for d in range (0, lensx) %}
-            <input type="checkbox" id= {{ sx[d] }} name= {{ sx[d] }} value={{ sx[d] }} />
-            <label for= {{ sx[d] }} > {{ sx[d] }}</label><br/>
+            <input type="checkbox" id={{ sx[d] }} name={{ sx[d] }} value={{ sx[d] }}/>
+            <label for={{ sx[d] }}> {{ sx[d] }}</label><br/>
             {% endfor %}
+            <br/>
 
-            <button type="submit">ANALYZE</button>
+            <button type="submit">Predict</button>
         </form>
 
     </div>
 
     <div class="visualizations">
-        <div class="vis" id="strokeprob"><p>{{ strokeProb }}</p></div>
-        <div class="vis" id="cvatype"><p>Ischemic / Hemmorragic</p></div>
-        <div class="vis" id="vessel"><p>Vessel affected</p></div>
-        <div class="vis" id="dxprob"><p>Differentail probaility</p></div>
+        <div class="vis" id="strokeprob">
+            <p align='center'>Stroke Probability P(cva) is:</p>
+            <div class='fig_num'>
+                <h3 class="stroke_prob">
+                    {{ strokeProb }}
+                </h3>
+            </div>
+        </div>
+        <div class="vis" id="cvatype">
+            <p align='center'> Ischemic / Hemmorragic</p>
+            <div class="img_wrapper">
+                <img src="static/ihprob.png">
+            </div>
+        </div>
+        <div class="vis" id="vessel">
+            <p align='center'> Affected Vessel</p>
+            <p align='center'> This feature is in beta</p>
+        </div>
+
+
     </div>
 
-    <div class="form_wrap_b">
+    <div class="vis">
+        <p align='center'>Differential Dx </p>
+        <img src="static/static_dx.png">
+    </div>
+
+    <div class="sx_form">
         <h3>Post CT DX</h3>
         <form action="/confirm_dx" method="POST">
-            <label for="md"><p>provider</p></label>
-            <input type="text" id="doc" name="doc"><br><br>
-            <label for="actual-dx">Diagnosis post CT:</label>
+            <label for="md"><p>provider:</p></label>
+            <input type="text" id="doc" name="doc">
+            <label for="actual-dx"><p>Diagnosis post CT:</p></label>
             <select name="dx" id="dx" form="actual-dx">
                 <option value="ischemic">Ischemic CVA</option>
                 <option value="hcva">Hemmorragic CVA</option>
                 {% for i in range (0, len) %}
-                <option value="disease" name= {{ diseases[i] }} > {{ diseases[i] }}</option>
+                <option value="disease" name={{ diseases[i] }}> {{ diseases[i] }}</option>
                 {% endfor %}
+            </select><br/>
 
-            </select>
+            <button type="submit">ADD PATIENT</button>
 
-            <button type="submit">ADD PATIENT DATA</button>
         </form>
 
     </div>

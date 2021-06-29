@@ -1,6 +1,13 @@
+import math
+import matplotlib.pyplot as plt
+import pandas as pd
 import joblib
 import numpy as np
 from flask import request
+from data_viualizations import create_vis_ih
+
+ptData = [0, 0., 0., 0., 0, 70., 0., 0., 190., 0, 0, 0, 0., 0,
+          0, 0., 0.]
 
 
 # takes form data and formats it for classifer model
@@ -40,8 +47,7 @@ def formatPtDataalt(req):
     ptData[10] = req.get('bgl')
     # 11 bmi
     ptData[11] = req.get('bmi')
-    print(ptData)
-    print(req)
+
     return ptData
 
 
@@ -84,9 +90,7 @@ def formatPtData(req):
 
     for s in sx:
         i = sx.index(s) + 9
-        print(s,i)
 
-        print(req.get(s))
         if req.get(s) == s:
             ptData[i] = 1
         else:
@@ -95,22 +99,32 @@ def formatPtData(req):
     return ptData
 
 
-
-
-
-
+def reshape(ptData):
+    ptData = np.array(ptData)
+    # reshape data to handle single patient data
+    pt_formatted = ptData.reshape(1, -1)
+    return pt_formatted
 
 
 def load_model(ptData):
     strokeModel = joblib.load('sx_clf_rf.pkl')
-    ptData = np.array(ptData)
-    # reshape data to handle single patient data
-    ptData = ptData.reshape(1, -1)
-    isCva = strokeModel.predict(ptData)
-    prob = strokeModel.predict_proba(ptData)
-    probmsg = f' probability of Stroke is {prob[0][1] * 100} % prediction value {isCva}'
-    print(probmsg)
+    reshapedData = reshape(ptData)
+    isCva = strokeModel.predict(reshapedData)
+    prob = strokeModel.predict_proba(reshapedData)
+    probmsg = f' {math.floor(prob[0][1] * 100)} % '
+
     return probmsg
+
+
+def predictType():
+    typeModel = joblib.load('typeModel.pkl')
+    reshapedData = reshape(formatPtData(newPatient()))
+    strokeType = typeModel.predict_proba(reshapedData)
+    # visualize data
+
+    return strokeType
+
+    print(strokeType)
 
 
 # gets new patient form data
@@ -128,14 +142,5 @@ def runModel():
     return prob
 
 
-# return model score
-def modelHealth():
-    print("everything's fine")
-
-
-# update Database with patient data after dx has been confirmed
-
 def updateDB():
-    if request.method == "POST":
-        req = request.form
-        print(req)
+    print("this feature is in beta")

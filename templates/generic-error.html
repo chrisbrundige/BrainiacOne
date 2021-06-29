@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Contact{% endblock title %}
+
+{% block appcontent %}
+<div class='error_msg'>
+    <h2> {{ err }} </h2>
+    <p>{{ err_msg }}</p>
+    <button>ok<a href="/dashboard"><p>OK</p></a></button>
+</div>
+
+{% endblock %}

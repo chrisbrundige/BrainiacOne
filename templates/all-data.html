@@ -5,12 +5,27 @@
 <p class ="txt-box">All patient Data in a pandas dataframe</p>
 <div class="stroke_data_wrapper" align="center">
    {% for table in tables %}
-            {{titles[loop.index]}}
             {{ table|safe }}
    {% endfor %}
 </div>
 
+
+
+<p class ="txt-box">Descriptive Data methods</p>
+<div class="static-data">
+
+    <div class="img_wrapper">
+        <img src = "static/BpPlot.png">
+    </div>
+    <div class="img_wrapper">
+        <img src = "static/graphAgeCva.png">
+
+    </div>
+    <div class="img_wrapper">
+        <img src = "static/vesselInvolved.png">
+    </div>
+</div>
 {% endblock %}
     
-    
+
 

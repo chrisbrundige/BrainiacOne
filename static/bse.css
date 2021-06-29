@@ -1,10 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap");
 
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+
+/* GLOBAL STYLES*/
+
+h3{
+  font-family: 'Rajdhani', sans-serif;
+}
+
+/* Navigation Styles */
 .wrapper {
   display: grid;
-  grid-template-rows: 100px 1fr 100px;
+  grid-template-rows: 100px 1fr  100px;
   background-image: url('/static/brainclip.png');
   background-repeat: no-repeat;
   background-position: center;
@@ -25,6 +35,119 @@ height:1000px;
 
 
 }
+
+/* Dashboard styles */
+
+.sx_form {
+
+  background-color: rgba(255, 255, 255, 0.411);
+  border: 1px solid rgba(1,1,1,.4);
+  padding:25px;
+  margin-top:25px;
+
+}
+
+.sx_form label{
+
+font-family: 'Roboto', sans-serif;
+
+}
+
+.dash-wrap{
+  margin:20px;
+  padding:5px;
+  max-width:100vw;
+
+}
+
+.sx_form h3{
+text-align:center;
+
+}
+
+.sx_form button{
+height:30px;
+width:125px;
+border-radius:50px;
+border:.1px solid silver;
+background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5 51%, #00d2ff 100%);
+color:#ffffff;
+box-shadow:10px 5px 10px #3a7bd5;
+margin:25px;
+
+}
+
+.vis {
+
+  background-color: rgba(255, 255, 255, 0.411);
+  border: 1px solid rgba(1,1,1,.4);
+  padding:25px;
+  margin-top:25px;
+
+}
+
+.stroke_prob{
+
+height:100px;
+width:100px;
+color:#bada55;
+font-size:30px;
+text-align:center;
+
+
+
+}
+
+/* END DASHBOARD STYLES */
+
+/* ERROR MESSAGE STYLING */
+
+.error_msg{
+
+    margin: auto;
+    padding: 5px;
+    background-color:blue;
+    color:white;
+
+}
+
+.error_msg p{
+
+
+    color:white;
+
+}
+
+.error_msg button{
+
+height:30px;
+width:125px;
+border-radius:50px;
+border:.1px solid silver;
+background-image: linear-gradient(to right, #00d2ff 0%, #3a7bd5 51%, #00d2ff 100%);
+color:#ffffff;
+box-shadow:10px 5px 10px #3a7bd5;
+
+}
+
+
+
+
+.static-data{
+margin:20px;
+display:grid;
+grid-template-column:1fr 1fr 1fr;
+grid-gap:20px;
+background-color:white;
+grid-auto-flow: column;
+}
+
+.img_wrapper{
+height:400px;
+width:400px;
+}
+
+
 
 
 
@@ -67,9 +190,7 @@ footer {
   grid-row: 3/4;
 }
 
-h3{
-  font-family: 'Rajdhani', sans-serif;
-}
+
 
 .accuracy{
   height:250px;
@@ -79,10 +200,9 @@ h3{
 }
 
 .accu_wrapper{
-  width:100vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+
+
+
 
 }
 
@@ -97,51 +217,8 @@ h3{
   overflow: scroll;
 }
 
-.form_wrap{
-  padding:25px;
-  margin:50px;
-  background-color: rgba(255, 255, 255, 0.411);
-  border:5px solid rgba(1,1,1,.4);
-  max-width: 500px;
-  max-height:600px;
-  grid-column: 1/2;
-  grid-row:1/3;
-}
-
-.form_wrap_b{
-  padding:25px;
-  margin:50px;
-  background-color: rgba(255, 255, 255, 0.411);
-  border:5px solid rgba(1,1,1,.4);
-  max-width: 500px;
-  grid-column:3/-1;
-   max-height:600px;
-  grid-row:1/2;
-  }
-
-.dash-wrap{
-  display: grid;
-  grid-template-columns: 600px 800px 400px  ;
-  grid-template-rows: 1fr 1fr 1fr;
-}
-
-.visualizations{
-  display:flex;
-  grid-column: 2/3;
-  grid_row:1/2;
-  flex-wrap:wrap;
-  flex-direction:row;
-  margin:50px;
-}
-
-.vis {
-  height:250px;
-  width:250px;
-  background-color: #ffffff;
-  border:5px solid rgba(1,1,1,.4);
-  padding: 3px;
-  margin:3px;
-  
+p_center{
+align = center;
 }
 
 table.dataframe, .dataframe th, .dataframe td {
@@ -222,6 +299,16 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+
+
+img{
+max-height:100%;
+max-width:100%;
+
+}
+
+
 
 
 

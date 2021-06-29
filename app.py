@@ -1,10 +1,14 @@
 import pandas as pd
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, flash, render_template, request, url_for, redirect
 
-from functions import runModel, updateDB
-
+from data_viualizations import BpAGE, graphAgeCVA, vesselInvolved
+from functions import runModel, predictType, create_vis_ih, updateDB
+from bokeh.plotting import figure
+from bokeh.embed import file_html
+import json
 app = Flask(__name__)
-
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+prob = '(P|CVA)'
 diseases = ['Brain Tumors',
             'Hypoglycemia',
             'Toxic poisoning',
@@ -46,34 +50,46 @@ def login():
 
 @app.route('/all-data')
 def alldata():
-    stroke_data = pd.read_csv('data/stroke_data.csv')
+
+    stroke_data = pd.read_csv('data/stroke_data_complete.csv')
+    BpAGE(stroke_data)
+    graphAgeCVA(stroke_data)
+    stroke_data = stroke_data[1000:1500]
     return render_template("all-data.html", tables=[stroke_data.to_html(classes='stroke_data')],
                            titles=stroke_data.columns.values)
 
 
 @app.route('/datahealth')
 def datahealth():
-    accu = 74
     clr = pd.read_pickle("data/classification_report.pkl")
-    return render_template("datahealth.html", accu=accu, tables=[clr.to_html(classes='clr')], titles=clr.columns.values)
+    return render_template("datahealth.html", tables=[clr.to_html(classes='clr')], titles=clr.columns.values)
 
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template("dashboard.html", len=len(diseases),lensx=len(sx), diseases=diseases, sx=sx,strokeProb="Enter Pt. Data to see P(CVA)")
+    return render_template("dashboard.html", len=len(diseases), lensx=len(sx), diseases=diseases, sx=sx,
+                           strokeProb="Enter Pt. Data to see P(CVA)")
 
 
 @app.route("/new_patient", methods=["POST", "GET"])
 def formSubmit():
 
-    prob = runModel()
-    return render_template("dashboard.html",lensx=len(sx), strokeProb=prob, len=len(diseases), diseases=diseases, sx=sx)
+    ih_plot = create_vis_ih(predictType())
+
+    try:
+        prob = runModel()
+        return render_template("dashboard.html", lensx=len(sx), strokeProb=prob, len=len(diseases), diseases=diseases,
+                               sx=sx)
+    except():
+        print('err')
+        return render_template("generic-error.html", err_msg="Some Required values are missing", err="NULL VALUE ERROR")
 
 
 @app.route("/confirm_dx", methods=["POST", "GET"])
 def confirmDX():
     updateDB()
-    return render_template("dashboard.html", strokeProb=prob, len=len(diseases), diseases=diseases, lensx=len(sx), sx=sx)
+    return render_template("dashboard.html", strokeProb=prob, len=len(diseases), diseases=diseases, lensx=len(sx),
+                           sx=sx)
 
 
 if __name__ == "__main__":
