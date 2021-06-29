@@ -1,10 +1,7 @@
 import math
-import matplotlib.pyplot as plt
-import pandas as pd
 import joblib
 import numpy as np
 from flask import request
-from data_viualizations import create_vis_ih
 
 ptData = [0, 0., 0., 0., 0, 70., 0., 0., 190., 0, 0, 0, 0., 0,
           0, 0., 0.]

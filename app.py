@@ -1,11 +1,9 @@
 import pandas as pd
-from flask import Flask, flash, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect
+from data_visualizations import BpAGE, graphAgeCVA
+from functions import runModel, predictType, updateDB
+from data_visualizations import create_vis_ih
 
-from data_viualizations import BpAGE, graphAgeCVA, vesselInvolved
-from functions import runModel, predictType, create_vis_ih, updateDB
-from bokeh.plotting import figure
-from bokeh.embed import file_html
-import json
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 prob = '(P|CVA)'
@@ -50,7 +48,6 @@ def login():
 
 @app.route('/all-data')
 def alldata():
-
     stroke_data = pd.read_csv('data/stroke_data_complete.csv')
     BpAGE(stroke_data)
     graphAgeCVA(stroke_data)
@@ -73,10 +70,8 @@ def dashboard():
 
 @app.route("/new_patient", methods=["POST", "GET"])
 def formSubmit():
-
-    ih_plot = create_vis_ih(predictType())
-
     try:
+        create_vis_ih(predictType())
         prob = runModel()
         return render_template("dashboard.html", lensx=len(sx), strokeProb=prob, len=len(diseases), diseases=diseases,
                                sx=sx)

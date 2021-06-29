@@ -1,18 +1,7 @@
-# data_vizualizations.py
+# data_visualizations.py
 # this file contains methods that display data from logic formatted for the Front end
-import joblib
-import pandas as pd
-import matplotlib.pyplot as plt
-from bokeh.io import export_png
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.model_selection import train_test_split
-
-from bokeh.plotting import figure
-from bokeh.resources import CDN
-from bokeh.embed import file_html
 import numpy as np
-from bokeh.io import show, output_file
+from bokeh.io import export_png
 from bokeh.plotting import figure
 
 
